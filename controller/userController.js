@@ -1,11 +1,8 @@
 // Step 1: Import the User model
 import User from "../models/userModel.js";
-import { Router } from "express";
-
-const router = Router();
 
 // Step 2: Define the controller function as async
-router.post("/signup", async (req, res) => {
+export const userSignup = async (req, res) => {
   try {
     // Step 3: Check if a user already exists with this email
     const user = await User.findOne({ email: req.body.email });
@@ -34,6 +31,4 @@ router.post("/signup", async (req, res) => {
     // Step 9: Catch and handle any errors
     res.status(500).json({ message: "Internal server error", error: error.message });
   }
-});
-
-export default router;
+};

@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
-import userRoutes from "./controller/userController.js";
+import router from './routes/userRoutes.js'
 
 // Load environment variables FIRST
 dotenv.config();
@@ -16,7 +16,7 @@ connectDB();
 app.use(express.json());
 
 // Routes
-app.use("/api", userRoutes);
+app.use("/", router);
 
 // Server start
 const port = process.env.PORT || 7000;
