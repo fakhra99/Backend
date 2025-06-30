@@ -1,7 +1,7 @@
 // Step 1: Import the User model
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 // Step 2: Define the controller function as async
 export const userSignup = async (req, res) => {
