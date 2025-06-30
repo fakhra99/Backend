@@ -32,3 +32,21 @@ export const userSignup = async (req, res) => {
     res.status(500).json({ message: "Internal server error", error: error.message });
   }
 };
+
+// Login
+export const userLogin = async(req, res) => {
+    try{
+        const {email, password} = req.body;
+        const user = await User.findOne({email});
+    
+    if(!user || user.password !== password){
+        return  res.status(401).json({message: "could not login user password or email incorrect"});
+    }
+    else{        
+        res.status(400).json({message: "login successful", user});
+    }}
+
+     catch (error ){
+        res.status(500).json({message: "internal server error", error: error.message})
+     }
+}
