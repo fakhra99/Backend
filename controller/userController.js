@@ -1,5 +1,6 @@
 // Step 1: Import the User model
 import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
 // Step 2: Define the controller function as async
 export const userSignup = async (req, res) => {
@@ -42,8 +43,9 @@ export const userLogin = async(req, res) => {
     if(!user || user.password !== password){
         return  res.status(401).json({message: "could not login user password or email incorrect"});
     }
-    else{        
-        res.status(400).json({message: "login successful", user});
+    else{  
+        const jwt_Token = jwt.sign({user_id:User.id}, process.env.SECRET_KEY, {expiresIn: '1h'});     
+        res.status(400).json({message: "login successful", user, jwt_Token});
     }}
 
      catch (error ){
